@@ -127,7 +127,7 @@ class MyCrew:
     @crew
     def crew(self) -> Crew:
         return Crew(
-            agents=self.agents,
+            agents=[a for a in self.agents if a.role != self.project_manager().role],
             tasks=self.tasks,
             process=Process.hierarchical,
             manager_agent=self.project_manager(),
