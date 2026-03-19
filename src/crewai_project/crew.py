@@ -23,7 +23,15 @@ class MyCrew:
     def researcher(self) -> Agent:
         return Agent(
             config=self.agents_config["researcher"],  # type: ignore[index]
-            llm="google/gemini-2.0-flash",
+            llm="gemini/gemini-2.0-flash",
+            verbose=True,
+        )
+
+    @agent
+    def reporting_analyst(self) -> Agent:
+        return Agent(
+            config=self.agents_config["reporting_analyst"],  # type: ignore[index]
+            llm="gemini/gemini-2.0-flash",
             verbose=True,
         )
 
