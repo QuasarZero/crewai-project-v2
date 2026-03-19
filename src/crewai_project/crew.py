@@ -1,4 +1,4 @@
-from crewai import Agent, Crew, Process, Task
+from crewai import Agent, Crew, Process, Task, LLM
 from crewai.project import CrewBase, agent, crew, task
 from crewai.agents.agent_builder.base_agent import BaseAgent
 
@@ -126,10 +126,11 @@ class MyCrew:
 
     @crew
     def crew(self) -> Crew:
+        manager_llm = LLM(model="gemini/gemini-flash-latest")
         return Crew(
-            agents=[a for a in self.agents if a.role != self.project_manager().role],
+            agents=self.agents,
             tasks=self.tasks,
             process=Process.hierarchical,
-            manager_agent=self.project_manager(),
+            manager_llm=manager_llm,
             verbose=True,
         )
