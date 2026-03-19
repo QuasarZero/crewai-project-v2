@@ -1,17 +1,55 @@
-research_task:
+requirements_gathering:
   description: >
-    Conduct a thorough research about {topic}
-    Make sure you find any interesting and relevant information given
-    the current year is {current_year}.
+    Gather and analyze requirements for {project_name}.
+    Conduct stakeholder interviews, analyze user needs, and document functional requirements.
+    Create user stories and acceptance criteria.
   expected_output: >
-    A list with 10 bullet points of the most relevant information about {topic}
-  agent: researcher
+    A comprehensive requirements document with user stories, acceptance criteria, and use cases.
+  agent: requirements_analyst
 
-reporting_task:
+ui_design:
   description: >
-    Review the context you got and expand each topic into a full section for a report.
-    Make sure the report is detailed and contains any and all relevant information.
+    Design user interface mockups and interactive prototypes for {project_name}.
+    Create wireframes, high-fidelity designs, and design specifications.
+    Ensure designs follow accessibility guidelines.
   expected_output: >
-    A fully fledged report with the main topics, each with a full section of information.
-    Formatted as markdown without '```'
-  agent: reporting_analyst
+    UI mockups, design specifications, and a prototype demonstrating the user flow.
+  agent: ui_designer
+
+development:
+  description: >
+    Implement {project_name} based on the requirements and design specifications.
+    Write clean, tested, and documented code following best practices.
+    Set up CI/CD pipelines and ensure code quality.
+  expected_output: >
+    Working software with unit tests, code documentation, and CI/CD configuration.
+  agent: software_developer
+
+testing:
+  description: >
+    Create and execute comprehensive test plans for {project_name}.
+    Perform functional, integration, and regression testing.
+    Document test results and track defects to resolution.
+  expected_output: >
+    Test plans, test cases, test execution reports, and defect tracking documentation.
+  agent: qa_engineer
+
+documentation:
+  description: >
+    Create comprehensive documentation for {project_name} including:
+    - User guides and tutorials
+    - API documentation (if applicable)
+    - Deployment and configuration guides
+    - Troubleshooting FAQ
+  expected_output: >
+    Complete user documentation and developer guides in markdown format.
+  agent: technical_writer
+
+product_review:
+  description: >
+    Review the completed {project_name} deliverables from all team members.
+    Ensure alignment with original vision, quality standards, and business objectives.
+    Provide final recommendations and sign-off.
+  expected_output: >
+    A product review report with assessment and go/no-go recommendation.
+  agent: product_manager

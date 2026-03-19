@@ -18,7 +18,7 @@ def run():
     """
     Run the crew.
     """
-    inputs = {"topic": "AI LLMs", "current_year": str(datetime.now().year)}
+    inputs = {"project_name": "AI Assistant", "current_year": str(datetime.now().year)}
 
     try:
         MyCrew().crew().kickoff(inputs=inputs)
