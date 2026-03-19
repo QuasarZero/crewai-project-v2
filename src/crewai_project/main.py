@@ -8,54 +8,49 @@ from crewai_project.crew import MyCrew
 
 warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
 
-# This main file is intended to be a way for you to run your
-# crew locally, so refrain from adding unnecessary logic into this file.
-# Replace with inputs you want to test with, it will automatically
-# interpolate any tasks and agents information
-
 
 def run():
     """
-    Run the crew.
+    运行 Crew
     """
-    inputs = {"project_name": "AI Assistant", "current_year": str(datetime.now().year)}
+    inputs = {"project_name": "AI 助手", "current_year": str(datetime.now().year)}
 
     try:
         MyCrew().crew().kickoff(inputs=inputs)
     except Exception as e:
-        raise Exception(f"An error occurred while running the crew: {e}")
+        raise Exception(f"运行 Crew 时发生错误: {e}")
 
 
 def train():
     """
-    Train the crew for a given number of iterations.
+    训练 Crew 若干轮次
     """
-    inputs = {"topic": "AI LLMs", "current_year": str(datetime.now().year)}
+    inputs = {"project_name": "AI 助手", "current_year": str(datetime.now().year)}
     try:
         MyCrew().crew().train(
             n_iterations=int(sys.argv[1]), filename=sys.argv[2], inputs=inputs
         )
 
     except Exception as e:
-        raise Exception(f"An error occurred while training the crew: {e}")
+        raise Exception(f"训练 Crew 时发生错误: {e}")
 
 
 def replay():
     """
-    Replay the crew execution from a specific task.
+    从指定任务重新播放 Crew 执行过程
     """
     try:
         MyCrew().crew().replay(task_id=sys.argv[1])
 
     except Exception as e:
-        raise Exception(f"An error occurred while replaying the crew: {e}")
+        raise Exception(f"重放 Crew 时发生错误: {e}")
 
 
 def test():
     """
-    Test the crew execution and returns the results.
+    测试 Crew 执行并返回结果
     """
-    inputs = {"topic": "AI LLMs", "current_year": str(datetime.now().year)}
+    inputs = {"project_name": "AI 助手", "current_year": str(datetime.now().year)}
 
     try:
         MyCrew().crew().test(
@@ -63,28 +58,26 @@ def test():
         )
 
     except Exception as e:
-        raise Exception(f"An error occurred while testing the crew: {e}")
+        raise Exception(f"测试 Crew 时发生错误: {e}")
 
 
 def run_with_trigger():
     """
-    Run the crew with trigger payload.
+    使用触发载荷运行 Crew
     """
     import json
 
     if len(sys.argv) < 2:
-        raise Exception(
-            "No trigger payload provided. Please provide JSON payload as argument."
-        )
+        raise Exception("未提供触发载荷，请提供 JSON 格式的载荷参数。")
 
     try:
         trigger_payload = json.loads(sys.argv[1])
     except json.JSONDecodeError:
-        raise Exception("Invalid JSON payload provided as argument")
+        raise Exception("提供的触发载荷不是有效的 JSON 格式")
 
     inputs = {
         "crewai_trigger_payload": trigger_payload,
-        "topic": "",
+        "project_name": "",
         "current_year": "",
     }
 
@@ -92,4 +85,4 @@ def run_with_trigger():
         result = MyCrew().crew().kickoff(inputs=inputs)
         return result
     except Exception as e:
-        raise Exception(f"An error occurred while running the crew with trigger: {e}")
+        raise Exception(f"使用触发载荷运行 Crew 时发生错误: {e}")

@@ -1,55 +1,55 @@
 requirements_gathering:
   description: >
-    Gather and analyze requirements for {project_name}.
-    Conduct stakeholder interviews, analyze user needs, and document functional requirements.
-    Create user stories and acceptance criteria.
+    为 {project_name} 收集和分析需求。
+    与利益相关者进行访谈，分析用户需求，并记录功能需求。
+    创建用户故事和验收标准。
   expected_output: >
-    A comprehensive requirements document with user stories, acceptance criteria, and use cases.
+    一份全面的需求文档，包含用户故事、验收标准和用例。
   agent: requirements_analyst
 
 ui_design:
   description: >
-    Design user interface mockups and interactive prototypes for {project_name}.
-    Create wireframes, high-fidelity designs, and design specifications.
-    Ensure designs follow accessibility guidelines.
+    为 {project_name} 设计用户界面模型和交互原型。
+    创建线框图、高保真设计稿和设计规范文档。
+    确保设计遵循无障碍指南。
   expected_output: >
-    UI mockups, design specifications, and a prototype demonstrating the user flow.
+    UI 模型、设计规范和展示用户流程的原型。
   agent: ui_designer
 
 development:
   description: >
-    Implement {project_name} based on the requirements and design specifications.
-    Write clean, tested, and documented code following best practices.
-    Set up CI/CD pipelines and ensure code quality.
+    根据需求和设计规范实现 {project_name}。
+    编写简洁、有测试且有文档的代码，遵循最佳实践。
+    设置 CI/CD 流水线，确保代码质量。
   expected_output: >
-    Working software with unit tests, code documentation, and CI/CD configuration.
+    可运行的软件，包含单元测试、代码文档和 CI/CD 配置。
   agent: software_developer
 
 testing:
   description: >
-    Create and execute comprehensive test plans for {project_name}.
-    Perform functional, integration, and regression testing.
-    Document test results and track defects to resolution.
+    为 {project_name} 创建并执行全面的测试计划。
+    执行功能测试、集成测试和回归测试。
+    记录测试结果并跟踪缺陷直至解决。
   expected_output: >
-    Test plans, test cases, test execution reports, and defect tracking documentation.
+    测试计划、测试用例、测试执行报告和缺陷跟踪文档。
   agent: qa_engineer
 
 documentation:
   description: >
-    Create comprehensive documentation for {project_name} including:
-    - User guides and tutorials
-    - API documentation (if applicable)
-    - Deployment and configuration guides
-    - Troubleshooting FAQ
+    为 {project_name} 创建全面的文档，包括：
+    - 用户指南和教程
+    - API 文档（如适用）
+    - 部署和配置指南
+    - 故障排除 FAQ
   expected_output: >
-    Complete user documentation and developer guides in markdown format.
+    完整的用户文档和开发者指南，使用 Markdown 格式。
   agent: technical_writer
 
 product_review:
   description: >
-    Review the completed {project_name} deliverables from all team members.
-    Ensure alignment with original vision, quality standards, and business objectives.
-    Provide final recommendations and sign-off.
+    审查 {project_name} 所有团队成员的交付成果。
+    确保与原始愿景、质量标准和业务目标保持一致。
+    提供最终建议和签署意见。
   expected_output: >
-    A product review report with assessment and go/no-go recommendation.
+    一份产品评审报告，包含评估意见和上线/不上线建议。
   agent: product_manager

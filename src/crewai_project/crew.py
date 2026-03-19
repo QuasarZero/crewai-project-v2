@@ -5,7 +5,7 @@ from crewai.agents.agent_builder.base_agent import BaseAgent
 
 @CrewBase
 class MyCrew:
-    """Development team crew for software projects"""
+    """软件开发团队，负责软件项目的全流程开发"""
 
     agents: list[BaseAgent]
     tasks: list[Task]
