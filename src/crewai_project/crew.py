@@ -133,4 +133,6 @@ class MyCrew:
             process=Process.hierarchical,
             manager_llm=manager_llm,
             verbose=True,
+            output_log_file=True,
+            memory=True,
         )
