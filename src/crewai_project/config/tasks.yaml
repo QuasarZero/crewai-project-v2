@@ -1,55 +1,92 @@
-requirements_gathering:
+concept_definition:
   description: >
-    为 {project_name} 收集和分析需求。
-    与利益相关者进行访谈，分析用户需求，并记录功能需求。
-    创建用户故事和验收标准。
+    基于用户输入的需求，定义 {project_name} 的产品概念和愿景。
+    分析市场需求，确定产品定位，定义核心功能和价值主张。
   expected_output: >
-    一份全面的需求文档，包含用户故事、验收标准和用例。
+    产品概念文档，包含产品愿景、核心功能列表、市场定位、目标用户描述。
+  agent: product_manager
+
+requirements_detail:
+  description: >
+    根据产品经理定义的产品概念，详细分析并细化需求。
+    创建用户故事、用例图、功能列表、非功能需求、验收标准。
+    确保需求可测试、可实现、无歧义。
+  expected_output: >
+    详细需求规格说明书，包含用例模型、用户故事、验收标准、数据字典。
   agent: requirements_analyst
 
-ui_design:
+requirements_review:
   description: >
-    为 {project_name} 设计用户界面模型和交互原型。
-    创建线框图、高保真设计稿和设计规范文档。
-    确保设计遵循无障碍指南。
+    审核需求分析师提交的需求文档。
+    检查需求的完整性、一致性、可实现性。
+    如有问题，提出修改意见让需求分析师返工；如通过则签署确认。
   expected_output: >
-    UI 模型、设计规范和展示用户流程的原型。
+    需求评审报告，包含评审结论（通过/需修改）和具体意见。
+  agent: product_manager
+
+architecture_design:
+  description: >
+    根据已确认的需求，进行技术选型和系统架构设计。
+    确定技术栈、设计系统架构、定义模块划分和接口规范。
+    考虑性能、安全、可扩展性、可维护性。
+  expected_output: >
+    架构设计文档，包含技术选型说明、系统架构图、模块划分、接口规范、部署方案。
+  agent: architect
+
+task_breakdown:
+  description: >
+    将需求分解为可执行的任务，制定项目计划。
+    协调 UI 设计、前端开发、后端开发、测试等任务的依赖关系。
+    分配任务给团队成员，设置里程碑和截止日期。
+  expected_output: >
+    项目计划文档，包含任务分解表（WBS）、里程碑计划、人员分工、资源需求。
+  agent: project_manager
+
+ui_design_task:
+  description: >
+    根据需求和架构设计，创建用户界面设计方案。
+    设计页面布局、交互流程、视觉风格。
+    输出设计稿和规范说明，供开发人员参考实现。
+  expected_output: >
+    UI 设计文档，包含页面原型、交互说明、设计规范（颜色、字体、间距等）。
   agent: ui_designer
 
-development:
+development_task:
   description: >
-    根据需求和设计规范实现 {project_name}。
-    编写简洁、有测试且有文档的代码，遵循最佳实践。
-    设置 CI/CD 流水线，确保代码质量。
+    根据需求、架构设计和 UI 设计，实现系统功能。
+    编写代码、单元测试，并将代码提交到 {repo_url} 仓库。
+    确保代码质量，遵循编码规范，有适当的注释和文档。
   expected_output: >
-    可运行的软件，包含单元测试、代码文档和 CI/CD 配置。
+    提交到 {repo_url} 的代码，包含源码、单元测试、README。
   agent: software_developer
 
-testing:
+testing_task:
   description: >
-    为 {project_name} 创建并执行全面的测试计划。
-    执行功能测试、集成测试和回归测试。
-    记录测试结果并跟踪缺陷直至解决。
+    根据需求和代码实现，创建并执行测试。
+    运行自动化测试用例，如有问题需要让开发人员返工修复。
+    持续测试直到所有测试通过，确保代码质量达标。
   expected_output: >
-    测试计划、测试用例、测试执行报告和缺陷跟踪文档。
+    测试报告，包含测试用例执行结果、缺陷列表、回归测试结论。
   agent: qa_engineer
 
-documentation:
+documentation_task:
   description: >
-    为 {project_name} 创建全面的文档，包括：
-    - 用户指南和教程
-    - API 文档（如适用）
-    - 部署和配置指南
-    - 故障排除 FAQ
+    编写完整的项目文档，包括：
+    - 系统设计文档（架构、模块说明）
+    - 用户使用手册
+    - API 接口文档（如适用）
+    - 部署运维指南
+    - README 文件
+    - 用例文档和时序图
   expected_output: >
-    完整的用户文档和开发者指南，使用 Markdown 格式。
+    完整的项目文档集，使用 Markdown 格式，保存在 docs 目录。
   agent: technical_writer
 
-product_review:
+final_review:
   description: >
-    审查 {project_name} 所有团队成员的交付成果。
-    确保与原始愿景、质量标准和业务目标保持一致。
-    提供最终建议和签署意见。
+    对整个项目进行最终评审。
+    检查所有交付物是否满足需求、质量标准、项目目标。
+    汇总项目成果，给出交付建议。
   expected_output: >
-    一份产品评审报告，包含评估意见和上线/不上线建议。
-  agent: product_manager
+    项目终验报告，包含交付物清单、质量评估、项目总结、上线建议。
+  agent: project_manager

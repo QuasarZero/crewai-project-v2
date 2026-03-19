@@ -12,11 +12,27 @@ class MyCrew:
 
     @agent
     def product_manager(self) -> Agent:
-        return Agent(config=self.agents_config["product_manager"], verbose=True)
+        return Agent(
+            config=self.agents_config["product_manager"],
+            allow_delegation=True,
+            verbose=True,
+        )
 
     @agent
     def requirements_analyst(self) -> Agent:
         return Agent(config=self.agents_config["requirements_analyst"], verbose=True)
+
+    @agent
+    def project_manager(self) -> Agent:
+        return Agent(
+            config=self.agents_config["project_manager"],
+            allow_delegation=True,
+            verbose=True,
+        )
+
+    @agent
+    def architect(self) -> Agent:
+        return Agent(config=self.agents_config["architect"], verbose=True)
 
     @agent
     def ui_designer(self) -> Agent:
@@ -35,39 +51,77 @@ class MyCrew:
         return Agent(config=self.agents_config["technical_writer"], verbose=True)
 
     @task
-    def requirements_gathering(self) -> Task:
+    def concept_definition(self) -> Task:
         return Task(
-            config=self.tasks_config["requirements_gathering"],
+            config=self.tasks_config["concept_definition"],
         )
 
     @task
-    def ui_design(self) -> Task:
+    def requirements_detail(self) -> Task:
         return Task(
-            config=self.tasks_config["ui_design"],
+            config=self.tasks_config["requirements_detail"],
+            context=[self.concept_definition()],
         )
 
     @task
-    def development(self) -> Task:
+    def requirements_review(self) -> Task:
         return Task(
-            config=self.tasks_config["development"],
+            config=self.tasks_config["requirements_review"],
+            context=[self.requirements_detail()],
         )
 
     @task
-    def testing(self) -> Task:
+    def architecture_design(self) -> Task:
         return Task(
-            config=self.tasks_config["testing"],
+            config=self.tasks_config["architecture_design"],
+            context=[self.requirements_review()],
         )
 
     @task
-    def documentation(self) -> Task:
+    def task_breakdown(self) -> Task:
         return Task(
-            config=self.tasks_config["documentation"],
+            config=self.tasks_config["task_breakdown"],
+            context=[self.architecture_design()],
         )
 
     @task
-    def product_review(self) -> Task:
+    def ui_design_task(self) -> Task:
         return Task(
-            config=self.tasks_config["product_review"],
+            config=self.tasks_config["ui_design_task"],
+            context=[self.task_breakdown()],
+        )
+
+    @task
+    def development_task(self) -> Task:
+        return Task(
+            config=self.tasks_config["development_task"],
+            context=[self.task_breakdown(), self.ui_design_task()],
+        )
+
+    @task
+    def testing_task(self) -> Task:
+        return Task(
+            config=self.tasks_config["testing_task"],
+            context=[self.development_task()],
+        )
+
+    @task
+    def documentation_task(self) -> Task:
+        return Task(
+            config=self.tasks_config["documentation_task"],
+            context=[self.architecture_design(), self.development_task()],
+        )
+
+    @task
+    def final_review(self) -> Task:
+        return Task(
+            config=self.tasks_config["final_review"],
+            context=[
+                self.requirements_review(),
+                self.architecture_design(),
+                self.testing_task(),
+                self.documentation_task(),
+            ],
         )
 
     @crew
@@ -75,6 +129,7 @@ class MyCrew:
         return Crew(
             agents=self.agents,
             tasks=self.tasks,
-            process=Process.sequential,
+            process=Process.hierarchical,
+            manager_agent=self.project_manager(),
             verbose=True,
         )

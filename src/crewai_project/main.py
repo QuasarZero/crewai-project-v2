@@ -13,7 +13,11 @@ def run():
     """
     运行 Crew
     """
-    inputs = {"project_name": "AI 助手", "current_year": str(datetime.now().year)}
+    inputs = {
+        "project_name": "AI 助手",
+        "repo_url": "https://github.com/QuasarZero/crewai-project-v2",
+        "current_year": str(datetime.now().year),
+    }
 
     try:
         MyCrew().crew().kickoff(inputs=inputs)
@@ -25,7 +29,11 @@ def train():
     """
     训练 Crew 若干轮次
     """
-    inputs = {"project_name": "AI 助手", "current_year": str(datetime.now().year)}
+    inputs = {
+        "project_name": "AI 助手",
+        "repo_url": "https://github.com/QuasarZero/crewai-project-v2",
+        "current_year": str(datetime.now().year),
+    }
     try:
         MyCrew().crew().train(
             n_iterations=int(sys.argv[1]), filename=sys.argv[2], inputs=inputs
@@ -50,7 +58,11 @@ def test():
     """
     测试 Crew 执行并返回结果
     """
-    inputs = {"project_name": "AI 助手", "current_year": str(datetime.now().year)}
+    inputs = {
+        "project_name": "AI 助手",
+        "repo_url": "https://github.com/QuasarZero/crewai-project-v2",
+        "current_year": str(datetime.now().year),
+    }
 
     try:
         MyCrew().crew().test(
@@ -77,8 +89,9 @@ def run_with_trigger():
 
     inputs = {
         "crewai_trigger_payload": trigger_payload,
-        "project_name": "",
-        "current_year": "",
+        "project_name": trigger_payload.get("project_name", "项目"),
+        "repo_url": trigger_payload.get("repo_url", ""),
+        "current_year": str(datetime.now().year),
     }
 
     try:
